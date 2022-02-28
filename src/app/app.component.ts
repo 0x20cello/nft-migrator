@@ -58,9 +58,9 @@ export class AppComponent implements OnInit {
     this.bgAudio = new Audio();
     this.bgAudio.src = "../../../assets/brazilll.mp3";
     this.bgAudio.loop = true;
+    this.bgAudio.volume = 0.3;
     this.bgAudio.load();
     this.bgAudio.play();
-    this.bgAudio.volume = 0.3;
 
     if(this.eth) {
       
