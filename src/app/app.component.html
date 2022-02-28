@@ -1,9 +1,13 @@
 <div class="header">
-  <span>NFT Migrator</span>
+  <div class="logo pull-left">NFT Expat<br><small>funky nft migrator</small></div>
   <span class="pull-right address" *ngIf="selectedAddress">{{selectedAddress}}</span>
   <span class="pull-right audioCtrl" (click)="audioCtrlClick()" id="audioCtrl" title="Salome De Bahia - Festa Para Um Rei Negro">
     <img src="assets/images/audio.gif">
   </span>
+</div>
+
+<div class="overlay" *ngIf="showOverlay" @fadeOut (keydown)="start()" tabindex="0" >
+  <img (click)="start()" src="http://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/97152d7a3bad9b7.png">
 </div>
 
 <div *ngIf="metamaskError">

@@ -6,11 +6,24 @@ import { BscscanProvider } from "@ethers-ancillary/bsc";
 import { Moralis } from 'moralis';
 import Freezeframe from 'freezeframe';
 import { FreezeframeOptions } from 'freezeframe/dist/packages/freezeframe/types';
+import { trigger, transition, style, animate } from '@angular/animations';
+
+const fadeOut = trigger('fadeOut', [
+  transition(':leave', [
+    style({
+      opacity: 1
+    }),
+    animate('1s ease-out', style({
+      opacity: 0
+    }))
+  ])
+]);
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [ fadeOut ]
 })
 export class AppComponent implements OnInit {
   selectedAddress: string;
@@ -21,6 +34,7 @@ export class AppComponent implements OnInit {
   nftList: any = {};
   bgAudio !: HTMLAudioElement;
   audioCtrl!: Freezeframe;
+  showOverlay: Boolean = true;
 
   constructor() {
     
@@ -33,6 +47,11 @@ export class AppComponent implements OnInit {
     Moralis.start({ serverUrl, appId });
   }
 
+  start () {
+    this.showOverlay = false;
+    this.bgAudio.play();
+  }
+  
   async connectToWallet() {
     this.currentUser = await Moralis.authenticate({ signingMessage: "NFTMigrate Login." });
     setTimeout(()=> {
@@ -55,17 +74,14 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     
+    window.document.body.style.backgroundImage = "url(https://i.redd.it/u4wfyrj4tho21.png)";
     this.bgAudio = new Audio();
     this.bgAudio.src = "../../../assets/brazilll.mp3";
     this.bgAudio.loop = true;
     this.bgAudio.volume = 0.3;
     this.bgAudio.load();
     let initAudio = true;
-    window.document.body.addEventListener("mousemove", () => {
-      if(initAudio) this.bgAudio.play();
-      initAudio = false;
-    });
-
+    
     if(this.eth) {
       
       this.eth.on('accountsChanged', (accounts: string[]) => {

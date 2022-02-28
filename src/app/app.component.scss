@@ -31,6 +31,18 @@
     width: 100%;
     font-size: 18px;
 
+    .logo {
+        font-size: 40px;
+        span {
+            font-size: 30px;
+            letter-spacing: 6px;
+        }
+        small {
+            font-size: 65%;
+            font-style: italic;
+        }
+    }
+    
     .address {
         background: white;
         padding: 10px;
@@ -54,5 +66,23 @@
     border-radius: 7px;
     img {
         height: 34px;
+    }
+}
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    background-color: white;
+
+    img {
+        cursor: pointer;
+        width: 150px;
+        display: block;
+        height: auto;
     }
 }
