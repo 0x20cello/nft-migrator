@@ -1,7 +1,16 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
+  /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
+  "paths" : {
+    "crypto": ["./node_modules/crypto-browserify"],
+    "stream": ["./node_modules/stream-browserify"],
+    "assert": ["./node_modules/assert"],
+    "http": ["./node_modules/stream-http"],
+    "https": ["./node_modules/https-browserify"],
+    "os": ["./node_modules/os-browserify"],
+  },
   "compileOnSave": false,
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

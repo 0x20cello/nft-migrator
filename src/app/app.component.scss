@@ -1,0 +1,58 @@
+.wizard-container {
+    display: flex;
+    height: calc(100vh - 82px);
+    align-items: center;
+}
+
+.nft-list {
+    height: 400px;
+    overflow-y: auto;
+
+    .col-xs-3 {
+        padding: 0px;
+    }
+}
+
+.nft-item {
+    margin: 5px;
+}
+
+.mat-horizontal-content-container {
+    margin-top: 30px;
+}
+
+.header {   
+    color: white;
+    font-weight: 500;
+    font-family: monospace;
+    padding: 15px;
+    display: block;
+    position: absolute;
+    width: 100%;
+    font-size: 18px;
+
+    .address {
+        background: white;
+        padding: 10px;
+        color: black;
+        border-radius: 7px;
+    }
+}
+
+.parrot {
+    width: 46px;
+    position: absolute;
+    top: -82px;
+    left: 100px;
+}
+
+.audioCtrl {
+    padding: 3px;
+    margin-right: 9px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 7px;
+    img {
+        height: 34px;
+    }
+}
