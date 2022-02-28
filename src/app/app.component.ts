@@ -60,7 +60,11 @@ export class AppComponent implements OnInit {
     this.bgAudio.loop = true;
     this.bgAudio.volume = 0.3;
     this.bgAudio.load();
-    this.bgAudio.play();
+    let initAudio = true;
+    window.document.body.addEventListener("mousemove", () => {
+      if(initAudio) this.bgAudio.play();
+      initAudio = false;
+    });
 
     if(this.eth) {
       
