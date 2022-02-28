@@ -46,22 +46,23 @@ export class AppComponent implements OnInit {
     const appId = "SJUZUWZak9395fqctw7RUoeQAgE56DwcHTJBWBRd";
     Moralis.start({ serverUrl, appId });
   }
-
-  start () {
-    this.showOverlay = false;
-    this.bgAudio.play();
-  }
   
   async connectToWallet() {
     this.currentUser = await Moralis.authenticate({ signingMessage: "NFTMigrate Login." });
     setTimeout(()=> {
-      this.selectedAddress = this.currentUser.get("ethAddress");
+      this.setSelectedAddress(this.currentUser.get("ethAddress"));
+      this.getNfts();
     }, 1);
+  }
+
+  async setSelectedAddress(address:string) {
+    this.selectedAddress = address
+    await this.getNfts();
   }
 
   async checkWalletConnection() {
     this.currentUser = Moralis.User.current();
-    if(this.currentUser) this.selectedAddress = this.currentUser.get("ethAddress");
+    if(this.currentUser) this.setSelectedAddress(this.currentUser.get("ethAddress"));
   }
 
   async getNfts() {
@@ -95,6 +96,11 @@ export class AppComponent implements OnInit {
     }
   }
 
+  start () {
+    this.showOverlay = false;
+    this.bgAudio.play();
+  }
+  
   audioCtrlClick() {
     if(this.bgAudio.paused) this.bgAudio.play();
     else this.bgAudio.pause();

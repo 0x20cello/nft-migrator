@@ -21,6 +21,14 @@
     margin-top: 30px;
 }
 
+h2 {
+    color: #379ce8;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
 .header {   
     color: white;
     font-weight: 500;
@@ -32,7 +40,7 @@
     font-size: 18px;
 
     .logo {
-        font-size: 40px;
+        font-size: 30px;
         span {
             font-size: 30px;
             letter-spacing: 6px;
@@ -40,6 +48,7 @@
         small {
             font-size: 65%;
             font-style: italic;
+            text-decoration: underline;
         }
     }
     
@@ -61,7 +70,6 @@
 .audioCtrl {
     padding: 3px;
     margin-right: 9px;
-    cursor: pointer;
     background-color: white;
     border-radius: 7px;
     img {
@@ -80,9 +88,17 @@
     background-color: white;
 
     img {
-        cursor: pointer;
         width: 150px;
         display: block;
         height: auto;
     }
+}
+
+.form-actions {
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+    bottom: 0px;
+    text-align: right;
+    right: 0;
 }
