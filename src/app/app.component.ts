@@ -8,6 +8,7 @@ import Freezeframe from 'freezeframe';
 import { FreezeframeOptions } from 'freezeframe/dist/packages/freezeframe/types';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Web3ModalService } from '@mindsorg/web3modal-angular';
+import { Networks } from './networks';
 
 const fadeOut = trigger('fadeOut', [
   transition(':leave', [
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit {
   bgAudio !: HTMLAudioElement;
   audioCtrl!: Freezeframe;
   showOverlay: Boolean = true;
+  net !: any;
 
   nftList: any = {};
   selectedNfts: any[] = [];
@@ -82,15 +84,39 @@ export class AppComponent implements OnInit {
 
   async getNfts() {
     this.nftList = await Moralis.Web3API.account.getNFTs({
-      chain: 'bsc',
+      chain: this.net.chainId,
       address: this.selectedAddress
     });
     console.log(this.nftList)
   }
 
+  async switchNetwork(chainId: string) {
+    try {
+      await this.eth.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: chainId }],
+      });
+      this.net = Networks[chainId];
+    } catch (error: any) {
+      if (error.code === 4902) {
+        try {
+          await this.eth.request({
+            method: "wallet_addEthereumChain",
+            params: [
+              Networks[chainId]
+            ],
+          });
+          this.net = Networks[chainId];
+        } catch (error: any) {
+          console.log(error);
+        }
+      }
+    }
+    
+
+  }
+
   async ngOnInit(): Promise<void> {
-
-
     window.document.body.style.backgroundImage = "url(https://i.redd.it/u4wfyrj4tho21.png)";
     this.bgAudio = new Audio();
     this.bgAudio.src = "../../../assets/brazilll.mp3";
@@ -104,11 +130,13 @@ export class AppComponent implements OnInit {
         Moralis.User.logOut();
         window.location.reload();
       });
-
-      this.checkWalletConnection();
     } else {
       this.metamaskError = true;
     }
+  }
+
+  networkList() {
+    return Object.values(Networks);
   }
 
   start () {

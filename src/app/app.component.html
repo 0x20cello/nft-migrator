@@ -18,7 +18,7 @@
       style="min-height: 400px;">
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <b style="color: #608744;">Bienvenido!</b>
+            <b style="color: #608744;">Welcome!</b>
           </mat-expansion-panel-header>
           Here you can mass-transfer NFTs one wallet to another. <br> I created this website because I needed it myself, but feel free to use it yourself and to share it to whomever you prefer, if you enjoy it as much as I do.
           <br>
@@ -34,7 +34,7 @@
 
         <div *ngIf="metamaskError">
           <p class="text-center"><br><br><br>
-            <b>This page requires Metamask to be used.</b>
+            <b>This page requires Metamask to be installed.</b>
           </p>
         </div>
         <div *ngIf="!metamaskError">
@@ -42,8 +42,13 @@
             <mat-step [editable]="false">
               <form>
                 <ng-template matStepLabel>Network</ng-template>
+                <mat-selection-list [multiple]="false">
+                  <mat-list-option *ngFor="let net of networkList()" (click)="switchNetwork(net.chainId)">
+                    {{net.chainName}}
+                  </mat-list-option>
+                </mat-selection-list>
                 <div class="form-actions text-right">
-                  <button mat-button matStepperNext>Next</button>
+                  <button mat-button matStepperNext *ngIf="net" (click)="checkWalletConnection()">Next</button>
                 </div>
               </form>
             </mat-step>

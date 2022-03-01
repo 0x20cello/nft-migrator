@@ -100,11 +100,15 @@ h2 {
     }
 }
 
-.form-actions {
-    position: absolute;
-    width: 100%;
-    padding: 10px;
-    bottom: 0px;
-    text-align: right;
-    right: 0;
+
+form {
+    padding-bottom: 60px;
+    .form-actions {
+        position: absolute;
+        width: 100%;
+        padding: 10px;
+        bottom: 0px;
+        text-align: right;
+        right: 0;
+    }
 }
