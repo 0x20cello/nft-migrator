@@ -17,6 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { WalletService } from 'src/services/wallet-service.service';
+import { Web3ModalModule, Web3ModalService } from '@mindsorg/web3modal-angular';
 
 @NgModule({
   declarations: [
@@ -39,9 +40,27 @@ import { WalletService } from 'src/services/wallet-service.service';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    Web3ModalModule
   ],
-  providers: [WalletService],
+  providers: [
+    {
+      provide: Web3ModalService,
+      useFactory: () => {
+        return new Web3ModalService({
+          network: "mainnet", // optional
+          cacheProvider: true, // optional
+          disableInjectedProvider: false,
+          providerOptions:  {
+            binancechainwallet: {
+              package: true
+            }
+          }// required
+        });
+      },
+    },
+  ]
+,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

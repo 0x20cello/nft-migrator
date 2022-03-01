@@ -32,3 +32,6 @@ body {
 .mat-step-header.cdk-keyboard-focused, .mat-step-header.cdk-program-focused, .mat-step-header:hover:not([aria-disabled]), .mat-step-header:hover[aria-disabled=false] {
     background-color: initial !important;
 }
+.mat-card-image {
+  padding: 20px;
+}

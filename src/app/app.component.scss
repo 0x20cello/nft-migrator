@@ -15,6 +15,11 @@
 
 .nft-item {
     margin: 5px;
+    cursor: pointer;
+
+    &.selected {
+        border: 2px solid #608744;
+    }
 }
 
 .mat-horizontal-content-container {
@@ -23,6 +28,7 @@
 
 h2 {
     color: #379ce8;
+    font-family: monospace;
 }
 
 .cursor-pointer {
@@ -64,7 +70,7 @@ h2 {
     width: 46px;
     position: absolute;
     top: -82px;
-    left: 100px;
+    right: 100px;
 }
 
 .audioCtrl {

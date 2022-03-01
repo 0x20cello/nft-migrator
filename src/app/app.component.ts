@@ -7,6 +7,7 @@ import { Moralis } from 'moralis';
 import Freezeframe from 'freezeframe';
 import { FreezeframeOptions } from 'freezeframe/dist/packages/freezeframe/types';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Web3ModalService } from '@mindsorg/web3modal-angular';
 
 const fadeOut = trigger('fadeOut', [
   transition(':leave', [
@@ -31,12 +32,14 @@ export class AppComponent implements OnInit {
   provider!: ethers.providers.Web3Provider;
   eth:any;
   currentUser!: any;
-  nftList: any = {};
   bgAudio !: HTMLAudioElement;
   audioCtrl!: Freezeframe;
   showOverlay: Boolean = true;
 
-  constructor() {
+  nftList: any = {};
+  selectedNfts: any[] = [];
+
+  constructor(private web3modalService: Web3ModalService) {
     
     this.selectedAddress = '';
     this.metamaskError = false;
@@ -47,7 +50,7 @@ export class AppComponent implements OnInit {
     Moralis.start({ serverUrl, appId });
   }
   
-  async connectToWallet() {
+  async connectMetamask() {
     this.currentUser = await Moralis.authenticate({ signingMessage: "NFTMigrate Login." });
     setTimeout(()=> {
       this.setSelectedAddress(this.currentUser.get("ethAddress"));
@@ -55,6 +58,17 @@ export class AppComponent implements OnInit {
     }, 1);
   }
 
+  async walletConnect() {
+    this.currentUser = await Moralis.authenticate({ signingMessage: "NFTMigrate Login.", provider: "walletconnect" });
+    setTimeout(()=> {
+      this.setSelectedAddress(this.currentUser.get("ethAddress"));
+      this.getNfts();
+    }, 1);
+  }
+
+  // isSelected(nft) {
+  //   return 
+  // }
 
   async checkWalletConnection() {
     this.currentUser = Moralis.User.current();
@@ -71,17 +85,18 @@ export class AppComponent implements OnInit {
       chain: 'bsc',
       address: this.selectedAddress
     });
+    console.log(this.nftList)
   }
 
   async ngOnInit(): Promise<void> {
-    
+
+
     window.document.body.style.backgroundImage = "url(https://i.redd.it/u4wfyrj4tho21.png)";
     this.bgAudio = new Audio();
     this.bgAudio.src = "../../../assets/brazilll.mp3";
     this.bgAudio.loop = true;
     this.bgAudio.volume = 0.3;
     this.bgAudio.load();
-    let initAudio = true;
     
     if(this.eth) {
       
