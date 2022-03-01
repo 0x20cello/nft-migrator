@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
   }
 
   async walletConnect() {
-    this.currentUser = await Moralis.authenticate({ signingMessage: "NFTMigrate Login.", provider: "walletconnect" });
+    this.currentUser = await Moralis.authenticate({ signingMessage: "NFTMigrate Login.", provider: "walletconnect", chainId: this.net.chainId });
     setTimeout(()=> {
       this.setSelectedAddress(this.currentUser.get("ethAddress"));
       this.getNfts();
@@ -119,7 +119,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    window.document.body.style.backgroundImage = "url(https://i.redd.it/u4wfyrj4tho21.png)";
+    window.document.body.style.backgroundImage = "url(assets/images/bg.png)";
     this.bgAudio = new Audio();
     this.bgAudio.src = "../../../assets/brazilll.mp3";
     this.bgAudio.loop = true;
