@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
   }
 
   async walletConnect() {
-    this.currentUser = await Moralis.authenticate({ signingMessage: "NFTMigrate Login.", provider: "walletconnect", chainId: this.net.chainId });
+    this.currentUser = await Moralis.authenticate({ signingMessage: "NFTMigrate Login.", provider: "walletconnect" });
     setTimeout(()=> {
       this.setSelectedAddress(this.currentUser.get("ethAddress"));
       this.getNfts();
