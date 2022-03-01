@@ -44,6 +44,7 @@ h2 {
     position: absolute;
     width: 100%;
     font-size: 18px;
+    text-align: right;
 
     .logo {
         font-size: 30px;
@@ -52,9 +53,10 @@ h2 {
             letter-spacing: 6px;
         }
         small {
-            font-size: 65%;
+            font-size: 50%;
             font-style: italic;
             text-decoration: underline;
+            font-family: monospace;
         }
     }
     

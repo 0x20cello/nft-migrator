@@ -1,5 +1,5 @@
 <div class="header">
-  <div class="logo pull-left">NFT Expat<br><small>funky nft migrator</small></div>
+  <div class="logo pull-left">🅝🅕🅣 🅔🅧🅟🅐🅣<br><small>...since 1961</small></div>
   <span class="pull-right address" *ngIf="selectedAddress">{{selectedAddress}}</span>
   <span class="pull-right audioCtrl cursor-pointer" (click)="audioCtrlClick()" id="audioCtrl"
     title="Salome De Bahia - Festa Para Um Rei Negro">
@@ -16,11 +16,12 @@
   <div class="row wizard-container">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0"
       style="min-height: 400px;">
+      <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <b style="color: #608744;">Welcome!</b>
           </mat-expansion-panel-header>
-          Here you can mass-transfer NFTs one wallet to another. <br> I created this website because I needed it myself, but feel free to use it yourself and to share it to whomever you prefer, if you enjoy it as much as I do.
+          Here you can mass-transfer NFTs one wallet to another. <br> I created this website because I needed it myself, but feel free to use it yourself and to share it to whomever you prefer, if you enjoy it as much as I do.<br>Since I needed some creative stimulation in this period, the UI came out <b>a bit</b> too funky. <br>Sorry about that. 
           <br>
           <br>
           <b>Donations:</b><br>
@@ -28,7 +29,18 @@
           <br><br>
           <b>Useful links:</b><br>
           <a href="https://github.com/20cello/nft-migrator" target="_blank">GitHub</a>
-        </mat-expansion-panel><br><br>
+          <a href="https://www.linkedin.com/in/felcher/" target="_blank">Linkedin</a>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <b style="color: #608744;">Disclaimer</b>
+          </mat-expansion-panel-header>
+          <p>
+            This is my first Web3-related project. As simple as the implementation of this use-case is, I'm by no means an expert of this field - yet. The thing is open-source, so <b>read the code</b> and <b>use at your own risk</b>. <br> I will not be accountable for losses of any asset coming from a person using this platform that is not myself.
+          </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+        <br><br>
       <mat-card>
         <img class="parrot" src="assets/images/parrot.png">
 
@@ -42,6 +54,7 @@
             <mat-step [editable]="false">
               <form>
                 <ng-template matStepLabel>Network</ng-template>
+                <p>Below you find the supported chains. I'll look into adding more and make this tool as useful as I can. Until I get bored.</p>
                 <mat-selection-list [multiple]="false">
                   <mat-list-option *ngFor="let net of networkList()" (click)="switchNetwork(net.chainId)">
                     {{net.chainName}}
