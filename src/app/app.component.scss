@@ -1,6 +1,12 @@
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
 .wizard-container {
     display: flex;
-    height: calc(100vh - 82px);
+    flex-grow: 1;
     align-items: center;
 }
 
@@ -41,7 +47,6 @@ h2 {
     font-family: monospace;
     padding: 15px;
     display: block;
-    position: absolute;
     width: 100%;
     font-size: 18px;
     text-align: right;

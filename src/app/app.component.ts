@@ -126,10 +126,13 @@ export class AppComponent implements OnInit {
     
     if(this.eth) {
       
-      this.eth.on('accountsChanged', (accounts: string[]) => {
+      function reload() {
         Moralis.User.logOut();
         window.location.reload();
-      });
+      }
+
+      this.eth.on('accountsChanged', reload);
+      this.eth.on('chainChanged', reload);
     } else {
       this.metamaskError = true;
     }

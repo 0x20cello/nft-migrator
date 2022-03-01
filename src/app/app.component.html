@@ -1,11 +1,3 @@
-<div class="header">
-  <div class="logo pull-left">🅝🅕🅣 🅔🅧🅟🅐🅣<br><small>...since 1961</small></div>
-  <span class="pull-right address" *ngIf="selectedAddress">{{selectedAddress}}</span>
-  <span class="pull-right audioCtrl cursor-pointer" (click)="audioCtrlClick()" id="audioCtrl"
-    title="Salome De Bahia - Festa Para Um Rei Negro">
-    <img src="assets/images/audio.gif">
-  </span>
-</div>
 
 <div class="overlay" *ngIf="showOverlay" @fadeOut (keydown)="start()" tabindex="0">
   <img (click)="start()" class="cursor-pointer"
@@ -13,6 +5,14 @@
 </div>
 
 <div class="container-fluid">
+  <div class="header">
+    <div class="logo pull-left">🅝🅕🅣 🅔🅧🅟🅐🅣<br><small>...since 1961</small></div>
+    <span class="pull-right address" *ngIf="selectedAddress">{{selectedAddress}}</span>
+    <span class="pull-right audioCtrl cursor-pointer" (click)="audioCtrlClick()" id="audioCtrl"
+      title="Salome De Bahia - Festa Para Um Rei Negro">
+      <img src="assets/images/audio.gif">
+    </span>
+  </div>  
   <div class="row wizard-container">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0"
       style="min-height: 400px;">
