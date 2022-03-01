@@ -12,15 +12,24 @@
     src="http://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/97152d7a3bad9b7.png">
 </div>
 
-<div *ngIf="metamaskError">
-  Questa pagina usa il Web3, installare Metamask.
-</div>
-<div *ngIf="!metamaskError">
-  <div class="container-fluid">
-    <div class="row wizard-container">
-      <mat-card class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0" style="min-height: 400px;">
-        <img class="parrot" src="assets/images/parrot.png">
+<div class="container-fluid">
+  <div class="row wizard-container">
+    <mat-card class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0"
+      style="min-height: 400px;">
+      <img class="parrot" src="assets/images/parrot.png">
+
+      <div *ngIf="metamaskError">
+        <p class="text-center"><br><br><br>
+          <b>This page requires Metamask to be used.</b>
+        </p>
+      </div>
+      <div *ngIf="!metamaskError">
         <mat-stepper linear #stepper>
+          <mat-step [editable]="false">
+            <form>
+              <ng-template matStepLabel>Network</ng-template>
+            </form>
+          </mat-step>
           <mat-step [editable]="false">
             <form>
               <ng-template matStepLabel>Source wallet</ng-template>
@@ -30,11 +39,13 @@
                 </p>
                 <h2>{{selectedAddress}}</h2>
                 <div *ngIf="nftList && nftList.result && nftList.result.length > 0; else noNft">
-                  <p> 
-                    We have detected <span><b>{{nftList.result.length}}</b></span> NFTs in your wallet. 
-                  </p></div>
+                  <p>
+                    We have detected <span><b>{{nftList.result.length}}</b></span> NFTs in your wallet.
+                  </p>
+                </div>
                 <ng-template #noNft>
-                  You still don't have any NFTs in your wallet. <br>You can keep hanging out here as much as you want, don't worry.<br><br><br><br>
+                  You still don't have any NFTs in your wallet. <br>You can keep hanging out here as much as you want,
+                  don't worry.<br><br><br><br>
                   <small>You should really consider getting some though, they are quite the hype right now.</small>
                 </ng-template>
               </div>
@@ -93,7 +104,7 @@
             </div>
           </mat-step>
         </mat-stepper>
-      </mat-card>
-    </div>
+      </div>
+    </mat-card>
   </div>
 </div>

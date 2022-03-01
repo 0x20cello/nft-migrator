@@ -55,14 +55,15 @@ export class AppComponent implements OnInit {
     }, 1);
   }
 
-  async setSelectedAddress(address:string) {
-    this.selectedAddress = address
-    await this.getNfts();
-  }
 
   async checkWalletConnection() {
     this.currentUser = Moralis.User.current();
     if(this.currentUser) this.setSelectedAddress(this.currentUser.get("ethAddress"));
+  }
+
+  async setSelectedAddress(address:string) {
+    this.selectedAddress = address
+    await this.getNfts();
   }
 
   async getNfts() {
@@ -70,7 +71,6 @@ export class AppComponent implements OnInit {
       chain: 'bsc',
       address: this.selectedAddress
     });
-
   }
 
   async ngOnInit(): Promise<void> {
