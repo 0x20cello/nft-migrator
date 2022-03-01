@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
   audioCtrl!: Freezeframe;
   showOverlay: Boolean = true;
   net !: any;
+  netStepPassed: boolean = false;
 
   nftList: any = {};
   selectedNfts: any[] = [];
@@ -73,6 +74,7 @@ export class AppComponent implements OnInit {
   // }
 
   async checkWalletConnection() {
+    this.netStepPassed = true;
     this.currentUser = Moralis.User.current();
     if(this.currentUser) this.setSelectedAddress(this.currentUser.get("ethAddress"));
   }
@@ -126,13 +128,19 @@ export class AppComponent implements OnInit {
     
     if(this.eth) {
       
-      function reload() {
+      this.eth.on('accountsChanged', () => {
+        console.log('ACCOUNT CHANGED')
         Moralis.User.logOut();
         window.location.reload();
-      }
-
-      this.eth.on('accountsChanged', reload);
-      this.eth.on('chainChanged', reload);
+      });
+      this.eth.on('chainChanged', () => {
+        if(this.netStepPassed) {
+          console.log('CHAIN CHANGED')
+          // 
+          Moralis.User.logOut();
+          window.location.reload();
+        }
+      });
     } else {
       this.metamaskError = true;
     }
